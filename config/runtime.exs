@@ -20,8 +20,12 @@ if System.get_env("PHX_SERVER") do
   config :saneh_roi_ros, SanehRoiRosWeb.Endpoint, server: true
 end
 
-config :saneh_roi_ros, SanehRoiRosWeb.Endpoint,
-  http: [port: String.to_integer(System.get_env("PORT", "4000"))]
+# Tests keep the port from config/test.exs (4002 + partition) so the Wallaby test server
+# never collides with a running dev server.
+if config_env() != :test do
+  config :saneh_roi_ros, SanehRoiRosWeb.Endpoint,
+    http: [port: String.to_integer(System.get_env("PORT", "4000"))]
+end
 
 if config_env() == :dev do
   # Reload browser tabs when matching files change.

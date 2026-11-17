@@ -1,11 +1,15 @@
 /* See the Tailwind configuration guide for advanced usage
    https://tailwindcss.com/docs/configuration */
 
+/* Brand font (IBM Plex Sans Thai) — must stay before every other rule */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap");
+
 @import "tailwindcss" source(none);
 @import "phoenix-colocated/saneh_roi_ros/colocated.css";
 @source "../css";
 @source "../js";
 @source "../../lib/saneh_roi_ros_web";
+@source "../../lib/saneh_roi_ros_ui";
 /* Required for Tailwind to automatically pick up changes in colocated CSS files in dev */
 @source "../../_build/dev/phoenix-colocated/saneh_roi_ros/*/";
 
@@ -30,8 +34,10 @@
   --color-base-200: oklch(25.26% 0.014 253.1);
   --color-base-300: oklch(20.15% 0.012 254.09);
   --color-base-content: oklch(97.807% 0.029 256.847);
-  --color-primary: oklch(58% 0.233 277.117);
-  --color-primary-content: oklch(96% 0.018 272.314);
+  /* Brand primary. daisyUI themes
+     are applied after Tailwind's @theme layer, so they must agree on it. */
+  --color-primary: #054C4C;
+  --color-primary-content: #FFFFFF;
   --color-secondary: oklch(58% 0.233 277.117);
   --color-secondary-content: oklch(96% 0.018 272.314);
   --color-accent: oklch(60% 0.25 292.717);
@@ -65,8 +71,9 @@
   --color-base-200: oklch(96% 0.001 286.375);
   --color-base-300: oklch(92% 0.004 286.32);
   --color-base-content: oklch(21% 0.006 285.885);
-  --color-primary: oklch(70% 0.213 47.604);
-  --color-primary-content: oklch(98% 0.016 73.684);
+  /* Brand primary — keep in sync with @theme below */
+  --color-primary: #054C4C;
+  --color-primary-content: #FFFFFF;
   --color-secondary: oklch(55% 0.027 264.364);
   --color-secondary-content: oklch(98% 0.002 247.839);
   --color-accent: oklch(0% 0 0);
@@ -103,3 +110,55 @@
 [data-phx-session], [data-phx-teleported-src] { display: contents }
 
 /* This file is for your main application CSS */
+
+/* ------------------------------------------------------------------
+   SanehRoiRosUI design tokens
+   ------------------------------------------------------------------ */
+@theme {
+  --font-sans: "IBM Plex Sans Thai", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #054C4C;
+  --color-primary-hover: #033636;
+  --color-primary-tint: #DDEBE9;
+  --color-bg: #FCF5E6;
+  --color-surface: #FFFAF0;
+  --color-sand: #F1E6C4;
+  --color-photo: #F5EBCF;
+  --color-line: #DCC489;
+  --color-line-soft: #E6D6A6;
+  --color-divider: #EFE3BF;
+  --color-line-dashed: #C9AE6A;
+  --color-switch-off: #D9CBA0;
+  --color-muted: #4A6462;
+  --color-icon: #8A8A72;
+  --color-handle: #A9A27F;
+  --color-note: #4A4630;
+  --color-disabled: #B9B39A;
+  --color-disabled-soft: #C9BC94;
+  --color-wait: #F2C46B;
+  --color-wait-line: #E0A93A;
+  --color-wait-ink: #3D2E0A;
+  --color-multi: #F3E9CC;
+  --color-multi-ink: #6B5A22;
+  --color-brown: #8A4B12;
+  --color-note-bg: #FBEFD6;
+  --color-minus: #FFF3E0;
+  --color-soldout: #EFE7D2;
+  --color-danger: #A4432C;
+
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-2xl: 18px;
+
+  --shadow-bar: 0 6px 18px rgba(5, 76, 76, 0.25);
+  --shadow-header: 0 4px 12px rgba(5, 76, 76, 0.08);
+}
+
+/* Category tabs, compact mode (set by the .CategoryTabs hook): one swipeable
+   row with no scrollbar (no edge fade). */
+.category-tabs[data-compact] {
+  scrollbar-width: none;
+}
+.category-tabs[data-compact]::-webkit-scrollbar { display: none; }

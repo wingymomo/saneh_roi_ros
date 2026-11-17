@@ -14,12 +14,32 @@ config :saneh_roi_ros, SanehRoiRos.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
 
-# We don't run a server during test. If one is required,
-# you can enable the server option below.
+# The server runs during test so Wallaby feature tests can drive a browser.
+# Each MIX_TEST_PARTITION gets its own port (4002, 4003, …) so partitioned
+# runs on one host do not collide; Wallaby's base_url follows it.
+test_partition =
+  case System.get_env("MIX_TEST_PARTITION", "") do
+    "" -> 0
+    partition -> String.to_integer(partition)
+  end
+
 config :saneh_roi_ros, SanehRoiRosWeb.Endpoint,
-  http: [ip: {127, 0, 0, 1}, port: 4002],
+  http: [ip: {127, 0, 0, 1}, port: 4002 + test_partition],
   secret_key_base: "r4CyntvePq68UUb+66Q0yeqwhXVZmmcrazoec9HOaW7zcNbyrmUrTCDQAXIgxqzk",
-  server: false
+  server: true
+
+# Share the Ecto sandbox with browser sessions, and mount the UI gallery.
+config :saneh_roi_ros, sql_sandbox: true, ui_gallery: true
+
+config :wallaby,
+  otp_app: :saneh_roi_ros,
+  driver: Wallaby.Chrome,
+  screenshot_on_failure: true,
+  screenshot_dir: "tmp/wallaby_screenshots",
+  chromedriver: [
+    headless: System.get_env("WALLABY_HEADLESS", "true") != "false",
+    path: System.get_env("CHROMEDRIVER_PATH", "chromedriver")
+  ]
 
 # In test we don't send emails
 config :saneh_roi_ros, SanehRoiRos.Mailer, adapter: Swoosh.Adapters.Test

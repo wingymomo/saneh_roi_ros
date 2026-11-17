@@ -1,0 +1,4 @@
+[tools]
+# Used by the Wallaby feature tests (test/saneh_roi_ros_web/features).
+# Must match the installed Chrome's major version; bump together with Chrome.
+chromedriver = "157"

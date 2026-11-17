@@ -52,6 +52,10 @@ defmodule SanehRoiRosWeb do
     quote do
       use Phoenix.LiveView
 
+      if Application.compile_env(:saneh_roi_ros, :sql_sandbox, false) do
+        on_mount SanehRoiRosWeb.LiveSandbox
+      end
+
       unquote(html_helpers())
     end
   end
@@ -86,6 +90,19 @@ defmodule SanehRoiRosWeb do
       import Phoenix.HTML
       # Core UI components
       import SanehRoiRosWeb.CoreComponents
+      import SanehRoiRosWeb.CategoryTabs
+      import SanehRoiRosWeb.OptionGroupRow, only: [option_group_row: 1]
+      import SanehRoiRosWeb.TableTile
+      import SanehRoiRosWeb.RoleTag, only: [role_tag: 1]
+      import SanehRoiRosWeb.MenuTag, only: [menu_tag: 1]
+      import SanehRoiRosWeb.QuickAdd, only: [quick_add_button: 1]
+      import SanehRoiRosWeb.Toast, only: [app_toast: 1]
+      import SanehRoiRosWeb.MainNav, only: [main_nav: 1]
+      import SanehRoiRosWeb.OrderBar
+      import SanehRoiRosWeb.Login
+      import SanehRoiRosWeb.ButtonRow
+      # Design-system components, called as <UI.button>, <UI.chip>, ...
+      use SanehRoiRosUI
 
       # Common modules used in templates
       alias Phoenix.LiveView.JS

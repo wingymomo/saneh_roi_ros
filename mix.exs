@@ -48,6 +48,7 @@ defmodule SanehRoiRos.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.2.0"},
       {:lazy_html, ">= 0.1.0", only: :test},
+      {:wallaby, "~> 0.30", runtime: false, only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.5", runtime: Mix.env() == :dev},
@@ -87,7 +88,8 @@ defmodule SanehRoiRos.MixProject do
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      # assets are built so Wallaby feature tests load the real app.js/app.css
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "assets.build", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["compile", "tailwind saneh_roi_ros", "esbuild saneh_roi_ros"],
       "assets.deploy": [

@@ -54,7 +54,7 @@ config :saneh_roi_ros, SanehRoiRosWeb.Endpoint,
 # different ports.
 
 # Enable dev routes for dashboard and mailbox
-config :saneh_roi_ros, dev_routes: true
+config :saneh_roi_ros, dev_routes: true, ui_gallery: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :default_formatter, format: "[$level] $message\n"

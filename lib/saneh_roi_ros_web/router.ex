@@ -20,6 +20,15 @@ defmodule SanehRoiRosWeb.Router do
     get "/", PageController, :home
   end
 
+  # Interactive gallery of the SanehRoiRosUI components (dev and test only).
+  if Application.compile_env(:saneh_roi_ros, :ui_gallery, false) do
+    scope "/dev", SanehRoiRosWeb do
+      pipe_through :browser
+
+      live "/ui", UIGalleryLive
+    end
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", SanehRoiRosWeb do
   #   pipe_through :api
