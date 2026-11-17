@@ -1,0 +1,39 @@
+/* ใบครัว / ใบเสร็จ — กว้าง 384px = 58mm @203dpi · ใช้เป็นต้นแบบ render เป็นภาพ raster */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap");
+:root { --font: "IBM Plex Sans Thai", sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #4D5A55; font-family: var(--font); padding: 24px; display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+.ticket__queue { font-size: 64px; }
+.ticket__where b { font-size: 30px; }
+.ticket__line { font-size: 24px; }
+.ticket__qty { font-size: 26px; }
+.ticket__opts { font-size: 19px; }
+.ticket__note { font-size: 20px; }
+.ticket__meta, .ticket__foot { font-size: 16px; }
+.receipt__shop { text-align: center; display: flex; flex-direction: column; gap: 2px; }
+.receipt__shop b { font-size: 28px; }
+.receipt__box { margin-top: 12px; display: flex; justify-content: space-between; align-items: center; border: 2px solid #111; padding: 6px 10px; font-size: 19px; font-weight: 700; }
+.receipt__box span:last-child { font-size: 38px; line-height: 1; }
+.receipt__row { display: flex; gap: 8px; font-size: 19px; font-weight: 600; padding-top: 4px; }
+.receipt__row span:nth-child(2) { flex: 1; }
+.receipt__sub { font-size: 16px; color: #444; padding-left: 36px; }
+.receipt__sum { display: flex; justify-content: space-between; font-size: 19px; padding: 2px 0; }
+.receipt__sum--big { font-size: 28px; font-weight: 700; }
+.receipt__block { padding: 8px 0; border-bottom: 2px dashed #111; }
+.receipt__end { text-align: center; padding-top: 12px; font-size: 18px; display: flex; flex-direction: column; gap: 4px; }
+/* ---------- Print (ใบครัว / ใบเสร็จ 58mm) ---------- */
+.ticket { width: 384px; background: #fff; color: #111; padding: 18px; display: flex; flex-direction: column; font-family: var(--font); }
+.ticket__head { display: flex; justify-content: space-between; align-items: center; }
+.ticket__queue { font-size: 52px; font-weight: 700; line-height: 1; }
+.ticket__where { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; }
+.ticket__where b { font-size: 24px; }
+.ticket__meta { font-size: 13px; color: #444; border-bottom: 2px dashed #111; padding: 6px 0 8px; }
+.ticket__item { padding: 6px 0; }
+.ticket__line { display: flex; gap: 8px; font-size: 19px; font-weight: 700; }
+.ticket__line span:first-child { flex: 1; }
+.ticket__qty { font-size: 21px; }
+.ticket__opts { font-size: 15px; line-height: 1.4; padding-right: 40px; }
+.ticket__note { margin-top: 4px; border: 2px solid #111; padding: 4px 8px; font-size: 16px; font-weight: 700; }
+.ticket__bag { margin-top: 12px; background: #111; color: #fff; font-size: 17px; font-weight: 700; padding: 6px 10px; }
+.ticket__bag-group { border: 2px solid #111; border-top: 0; padding: 4px 10px 6px; }
+.ticket__foot { margin-top: 14px; padding-top: 14px; border-top: 2px dashed #111; font-size: 13px; color: #444; }

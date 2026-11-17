@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><title>ตัวอย่างใบพิมพ์ 58mm</title><link rel="stylesheet" href="print.css"></head>
+<body>
+<!-- ใบครัว: โต๊ะในร้าน มีห่อกลับบางรายการ -->
+<div class="ticket">
+  <div class="ticket__head"><span class="ticket__queue">#3</span><span class="ticket__where"><b>โต๊ะ 1</b><span>รอบ 1</span></span></div>
+  <div class="ticket__meta">10:53 · 4 รายการ · ใส่ถุง 2</div>
+  <div style="font-size:18px;font-weight:700;margin-top:10px">กินที่ร้าน</div>
+  <div class="ticket__item"><div class="ticket__line"><span>น้ำตก พิเศษ</span><span class="ticket__qty">×1</span></div><div class="ticket__opts">เส้นเล็ก · หมูตุ๋น · ไม่ใส่ผัก</div></div>
+  <div class="ticket__item"><div class="ticket__line"><span>ชาไทย แก้ว</span><span class="ticket__qty">×2</span></div></div>
+  <div class="ticket__bag">🛍 ใส่ถุงกลับบ้าน (2)</div>
+  <div class="ticket__bag-group">
+    <div class="ticket__item"><div class="ticket__line"><span>น้ำตก ธรรมดา</span><span class="ticket__qty">×1</span></div><div class="ticket__opts">เส้นใหญ่ · หมูสับ</div><div class="ticket__note">★ หมายเหตุ: แยกน้ำ</div></div>
+    <div class="ticket__item"><div class="ticket__line"><span>ข้าวมันไก่ผสม พิเศษ</span><span class="ticket__qty">×1</span></div></div>
+  </div>
+  <div class="ticket__foot">ทั้งหมด 4 รายการ · พิมพ์ 10:53</div>
+</div>
+<!-- ใบครัว รอบ 2 -->
+<div class="ticket">
+  <div class="ticket__head"><span class="ticket__queue">#7</span><span class="ticket__where"><b>โต๊ะ 1</b><span>รอบ 2</span></span></div>
+  <div class="ticket__meta">สั่งเพิ่ม · โต๊ะเดิม (รอบแรก #3)<br>11:40 · 2 รายการ</div>
+  <div class="ticket__item"><div class="ticket__line"><span>เกาเหลา ธรรมดา</span><span class="ticket__qty">×1</span></div><div class="ticket__opts">หมูตุ๋น · ไข่ 1</div></div>
+  <div class="ticket__item"><div class="ticket__line"><span>ข้าวสวย</span><span class="ticket__qty">×2</span></div></div>
+  <div class="ticket__foot">ทั้งหมด 2 รายการ · พิมพ์ 11:40</div>
+</div>
+<!-- ใบครัว กลับบ้าน -->
+<div class="ticket">
+  <div class="ticket__head"><span class="ticket__queue">#8</span><span class="ticket__where"><b>กลับบ้าน</b><span>บิล ก3 · พี่แดง</span></span></div>
+  <div class="ticket__bag">🛍 ใส่ถุงทั้งหมด</div>
+  <div class="ticket__meta">11:20 · 3 รายการ · จ่ายแล้ว</div>
+  <div class="ticket__item"><div class="ticket__line"><span>น้ำตก ธรรมดา</span><span class="ticket__qty">×2</span></div><div class="ticket__opts">เส้นเล็ก · หมูตุ๋น</div></div>
+  <div class="ticket__item"><div class="ticket__line"><span>ข้าวมันไก่ผสม ธรรมดา</span><span class="ticket__qty">×1</span></div><div class="ticket__note">★ หมายเหตุ: แยกน้ำจิ้ม</div></div>
+  <div class="ticket__item"><div class="ticket__line"><span>ชาเย็น ขวด</span><span class="ticket__qty">×2</span></div></div>
+  <div class="ticket__foot">ทั้งหมด 3 รายการ · พิมพ์ 11:20<br>ขนมถุงไม่พิมพ์ (หยิบหน้าร้าน)</div>
+</div>
+<!-- ใบเสร็จ -->
+<div class="ticket">
+  <div class="receipt__shop"><b>เสน่ห์ร้อยรส</b><span style="font-size:16px;color:#444">ก๋วยเตี๋ยวเรือ · โนนสูง</span></div>
+  <div class="receipt__box"><span>กลับบ้าน · พี่แดง</span><span>#8</span></div>
+  <div class="ticket__meta" style="display:flex;justify-content:space-between"><span>บิล ก3 · 16/11/69 11:20</span><span>รับโดย นิด</span></div>
+  <div class="receipt__block">
+    <div class="receipt__row"><span>2×</span><span>น้ำตก ธรรมดา</span><span>100</span></div><div class="receipt__sub">เส้นเล็ก · หมูตุ๋น</div>
+    <div class="receipt__row"><span>1×</span><span>ข้าวมันไก่ผสม ธรรมดา</span><span>50</span></div><div class="receipt__sub">แยกน้ำจิ้ม</div>
+    <div class="receipt__row"><span>2×</span><span>ชาเย็น ขวด</span><span>40</span></div>
+    <div class="receipt__row"><span>1×</span><span>ขนมถุง ถุงเล็ก</span><span>30</span></div>
+  </div>
+  <div class="receipt__block">
+    <div class="receipt__sum"><span>รวม 6 ชิ้น</span><span>220</span></div>
+    <div class="receipt__sum"><span>ค่าถุง</span><span>0</span></div>
+    <div class="receipt__sum receipt__sum--big"><span>ยอดชำระ</span><span>220 บาท</span></div>
+    <div class="receipt__sum"><span>เงินสด</span><span>500</span></div>
+    <div class="receipt__sum"><span>ทอน</span><span>280</span></div>
+  </div>
+  <div class="receipt__end"><b>ขอบคุณค่ะ</b><span style="font-size:15px;color:#444">ยื่นใบนี้ตอนรับของ · เรียกตามเลขคิว</span></div>
+</div>
+</body></html>

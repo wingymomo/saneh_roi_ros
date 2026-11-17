@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Components — เสน่ห์ร้อยรส</title>
+<link rel="stylesheet" href="components.css">
+<style>
+  .gallery { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; display: flex; flex-direction: column; gap: 36px; }
+  .gallery h1 { margin: 0; font-size: 28px; }
+  .gallery > p { margin: 0; color: var(--color-text-muted); }
+  .spec { display: flex; flex-direction: column; gap: 12px; }
+  .spec h2 { margin: 0; font-size: 20px; }
+  .spec h2 code { font-size: 14px; font-weight: 500; color: var(--color-text-muted); margin-left: 8px; }
+  .spec p { margin: 0; font-size: 14px; color: var(--color-text-muted); line-height: 1.5; }
+  .demo { background: var(--color-bg); border: 1px dashed var(--color-border); border-radius: 16px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .demo--col { flex-direction: column; align-items: stretch; max-width: 390px; }
+  .demo--phone { position: relative; width: 390px; height: 200px; padding: 0; overflow: hidden; }
+  .demo--dark { background: #4D5A55; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .sw { border: 1px solid var(--color-border-soft); border-radius: 12px; overflow: hidden; background: #fff; font-size: 12px; }
+  .sw i { display: block; height: 48px; }
+  .sw div { padding: 6px 8px; display: flex; flex-direction: column; }
+  .sw code { font-weight: 600; }
+</style>
+</head>
+<body>
+<main class="gallery">
+  <h1>Components — แอปพนักงาน เสน่ห์ร้อยรส</h1>
+  <p>ทุก class อยู่ใน <code>components.css</code> · 1 section = 1 function component ที่ควรทำใน Phoenix · state ดูจาก attribute (<code>aria-pressed</code>, <code>aria-checked</code>, <code>aria-disabled</code>) หรือ modifier (<code>--active</code>, <code>--ordered</code>)</p>
+
+  <section class="spec">
+    <h2>Colors<code>:root --color-*</code></h2>
+    <div class="swatches">
+      <div class="sw"><i style="background:#054C4C"></i><div><code>primary</code>#054C4C</div></div>
+      <div class="sw"><i style="background:#033636"></i><div><code>primary-hover</code>#033636</div></div>
+      <div class="sw"><i style="background:#DDEBE9"></i><div><code>primary-tint</code>#DDEBE9</div></div>
+      <div class="sw"><i style="background:#FCF5E6"></i><div><code>bg</code>#FCF5E6</div></div>
+      <div class="sw"><i style="background:#FFFAF0"></i><div><code>surface</code>#FFFAF0</div></div>
+      <div class="sw"><i style="background:#F1E6C4"></i><div><code>sand</code>#F1E6C4</div></div>
+      <div class="sw"><i style="background:#DCC489"></i><div><code>border</code>#DCC489</div></div>
+      <div class="sw"><i style="background:#E6D6A6"></i><div><code>border-soft</code>#E6D6A6</div></div>
+      <div class="sw"><i style="background:#EFE3BF"></i><div><code>divider</code>#EFE3BF</div></div>
+      <div class="sw"><i style="background:#C9AE6A"></i><div><code>border-dashed</code>#C9AE6A</div></div>
+      <div class="sw"><i style="background:#4A6462"></i><div><code>text-muted</code>#4A6462</div></div>
+      <div class="sw"><i style="background:#8A8A72"></i><div><code>icon-muted</code>#8A8A72</div></div>
+      <div class="sw"><i style="background:#B9B39A"></i><div><code>disabled</code>#B9B39A</div></div>
+      <div class="sw"><i style="background:#F2C46B"></i><div><code>wait-bg</code>#F2C46B</div></div>
+      <div class="sw"><i style="background:#E0A93A"></i><div><code>wait-border</code>#E0A93A</div></div>
+      <div class="sw"><i style="background:#3D2E0A"></i><div><code>wait-text</code>#3D2E0A</div></div>
+      <div class="sw"><i style="background:#F3E9CC"></i><div><code>multi-tag-bg</code>#F3E9CC</div></div>
+      <div class="sw"><i style="background:#8A4B12"></i><div><code>accent-brown</code>#8A4B12</div></div>
+      <div class="sw"><i style="background:#FFF3E0"></i><div><code>minus-bg</code>#FFF3E0</div></div>
+      <div class="sw"><i style="background:#A4432C"></i><div><code>danger</code>#A4432C</div></div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Button<code>&lt;.button variant=…&gt;</code></h2>
+    <p>primary 56px (footer) · secondary/dashed/danger 52px · sm 40px ใน top bar · ข้อความปุ่มหลักบอกผล + ยอด</p>
+    <div class="demo">
+      <button class="btn btn--primary">ส่งครัว + คิดเงิน · 220</button>
+      <button class="btn btn--secondary">ส่งครัวก่อน</button>
+      <button class="btn btn--dashed">+ เพิ่มตัวเลือก</button>
+      <button class="btn btn--danger">เอาออกจากเมนูนี้</button>
+      <button class="btn btn--secondary btn--sm">ย้ายโต๊ะ</button>
+    </div>
+    <div class="demo demo--col">
+      <div class="btn-row"><button class="btn btn--secondary">ยกเลิก</button><button class="btn btn--primary">บันทึก · เพิ่ม ฝน</button></div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Chip<code>&lt;.chip selected&gt;</code></h2>
+    <p>44px · กลุ่ม "เลือก 1" ทำงานแบบ radio · กลุ่ม "เลือกได้หลายอย่าง" ทำงานแบบ toggle</p>
+    <div class="demo">
+      <div class="chips">
+        <button class="chip" aria-pressed="true">เส้นเล็ก</button>
+        <button class="chip" aria-pressed="false">เส้นใหญ่</button>
+        <button class="chip" aria-pressed="false">บะหมี่</button>
+        <button class="chip" aria-pressed="false">วุ้นเส้น</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Category tabs<code>&lt;.category_tabs active=…&gt;</code></h2>
+    <p>ลำดับตายตัว 7 แท็บ · ปกติ wrap 2 แถว · scroll ลงเกิน ~40px ใช้ <code>.tabs--compact</code> (แถวเดียว ปัดได้ sticky)</p>
+    <div class="demo demo--col" style="padding:0">
+      <div class="tabs">
+        <button class="tab" aria-pressed="true">ก๋วยเตี๋ยว</button><button class="tab">ข้าว</button><button class="tab">กับข้าว</button><button class="tab">เพิ่มเติม</button><button class="tab">เครื่องดื่ม</button><button class="tab">ไอศกรีม</button><button class="tab">ขนมถุง</button>
+      </div>
+    </div>
+    <div class="demo demo--col" style="padding:0">
+      <div class="tabs tabs--compact">
+        <button class="tab">ก๋วยเตี๋ยว</button><button class="tab">ข้าว</button><button class="tab" aria-pressed="true">กับข้าว</button><button class="tab">เพิ่มเติม</button><button class="tab">เครื่องดื่ม</button><button class="tab">ไอศกรีม</button><button class="tab">ขนมถุง</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Segment<code>&lt;.segment&gt;</code></h2>
+    <div class="demo demo--col"><div class="segment"><button aria-pressed="true">ถ้วย</button><button>โคน</button></div></div>
+  </section>
+
+  <section class="spec">
+    <h2>Stepper<code>&lt;.stepper value min=0&gt;</code></h2>
+    <p>ค่า 0 = ปุ่ม − จาง (aria-disabled) · มากกว่า 0 = <code>.stepper--active</code> · ลดจนเหลือ 0 = ยกเลิก · <code>--sm</code> ใช้ในหน้าสรุป</p>
+    <div class="demo">
+      <div class="stepper"><button class="stepper__minus" aria-disabled="true">−</button><span class="stepper__value">0</span><button class="stepper__plus">+</button></div>
+      <div class="stepper stepper--active"><button class="stepper__minus">−</button><span class="stepper__value">2</span><button class="stepper__plus">+</button></div>
+      <div class="stepper stepper--active stepper--sm"><button class="stepper__minus">−</button><span class="stepper__value">1</span><button class="stepper__plus">+</button></div>
+    </div>
+    <div class="demo demo--col">
+      <div class="price-row"><span class="price-row__name"></span><span class="col-head">ขวด<small>20</small></span><span class="col-head">แก้ว<small>25</small></span></div>
+      <div class="price-row"><span class="price-row__name">ชาไทย</span>
+        <div class="stepper"><button class="stepper__minus" aria-disabled="true">−</button><span class="stepper__value">0</span><button class="stepper__plus">+</button></div>
+        <div class="stepper stepper--active"><button class="stepper__minus">−</button><span class="stepper__value">2</span><button class="stepper__plus">+</button></div></div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Price button + count badge<code>&lt;.price_button price count&gt;</code></h2>
+    <p>ตารางน้ำอัดลม / น้ำเปล่า / ขนมถุง · แตะ = +1 · ช่องที่ไม่มีขนาดนั้นใช้ <code>.cell-empty</code></p>
+    <div class="demo demo--col">
+      <div class="price-row"><span class="price-row__name">โค้ก</span>
+        <button class="price-btn"><span class="price-btn__price">15</span></button>
+        <button class="price-btn price-btn--ordered"><span class="price-btn__price">16</span><span class="count-badge">2</span></button>
+        <button class="price-btn"><span class="price-btn__price">25</span></button></div>
+      <div class="price-row"><span class="price-row__name">สไปรท์</span><span class="cell-empty">–</span>
+        <button class="price-btn"><span class="price-btn__price">16</span></button>
+        <button class="price-btn"><span class="price-btn__price">25</span></button></div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Switch<code>&lt;.switch checked&gt;</code></h2>
+    <div class="demo demo--col">
+      <div class="switch-row"><div class="switch-row__text"><b>ใส่ถุงกลับบ้าน</b><small>ชามนี้</small></div><button class="switch" role="switch" aria-checked="false"></button></div>
+      <div class="switch-row"><div class="switch-row__text"><b>พิมพ์ลงใบครัว</b><small>ปิดได้ถ้าหยิบหน้าร้านเอง</small></div><button class="switch" role="switch" aria-checked="true"></button></div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>List / Card<code>&lt;.list&gt; &lt;.list_row&gt; &lt;.card&gt;</code></h2>
+    <div class="demo demo--col">
+      <span class="section-label">จัดการพนักงาน</span>
+      <div class="list">
+        <button class="list-row"><span class="list-row__icon">👥</span><span class="list-row__text"><b>รายชื่อพนักงาน</b><small>ใช้งาน 4 คน · ปิดใช้งาน 1</small></span><span class="chevron">›</span></button>
+        <button class="list-row"><span class="list-row__icon">＋</span><span class="list-row__text"><b>เพิ่มพนักงาน</b><small>ชื่อเล่น · ตำแหน่ง · รหัส 4 หลัก</small></span><span class="chevron">›</span></button>
+      </div>
+      <div class="list">
+        <button class="list-row list-row--soldout"><span class="list-row__text"><b>เย็นตาโฟต้มยำ <span class="tag tag--soldout">หมดวันนี้</span></b><small>50 / 60 · ทะเล 90 / 130</small></span><button class="switch" role="switch" aria-checked="false"></button></button>
+      </div>
+      <div class="card card--white"><b>น้ำตก</b><span style="font-size:14px;color:var(--color-text-muted)">เส้นใหญ่ · หมูสับ · ธรรมดา</span><span class="note-tag">หมายเหตุ: แยกน้ำ</span></div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Tags &amp; role badges<code>&lt;.tag&gt; &lt;.role_badge&gt;</code></h2>
+    <div class="demo">
+      <span class="tag tag--required">ต้องเลือก 1</span><span class="tag tag--multi">เลือกได้หลายอย่าง</span><span class="tag tag--soldout">หมดวันนี้</span>
+      <span class="role role--staff">พนักงาน</span><span class="role role--manager">ผู้จัดการ</span><span class="role role--owner">เจ้าของ</span>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Option group row<code>&lt;.option_group_row&gt;</code></h2>
+    <div class="demo demo--col">
+      <button class="option-group"><span class="option-group__text"><span class="option-group__head">เส้น <span class="tag tag--required">ต้องเลือก 1</span></span><span class="option-group__items">เส้นเล็ก · เส้นใหญ่ · เส้นหมี่ขาว · บะหมี่ · มาม่า · วุ้นเส้น</span></span><span class="chevron">›</span></button>
+      <button class="option-group"><span class="option-group__text"><span class="option-group__head">ไม่ใส่ <span class="tag tag--multi">เลือกได้หลายอย่าง</span></span><span class="option-group__items">ไม่ใส่ผัก · ไม่ใส่ผักโรย · ไม่ใส่ถั่ว · ไม่ใส่ถั่วงอก</span></span><span class="chevron">›</span></button>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Table tile<code>&lt;.table_tile&gt;</code></h2>
+    <p>ว่าง / มีลูกค้า (pill แสดงคิวทุกรอบ) · ไม่มีสถานะ "กำลังทำ"</p>
+    <div class="demo demo--col">
+      <div class="tables">
+        <button class="tile tile--busy"><span class="tile__queue">#3 #7</span><span class="tile__no">1</span><span class="tile__note">มีลูกค้า</span></button>
+        <button class="tile"><span class="tile__no">2</span><span class="tile__note">ว่าง</span></button>
+        <button class="tile tile--busy"><span class="tile__queue">#5</span><span class="tile__no">3</span><span class="tile__note">มีลูกค้า</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Bottom nav · Order bar · Toast<code>&lt;.bottom_nav&gt; &lt;.order_bar&gt; &lt;.toast&gt;</code></h2>
+    <p>เมนูที่ไม่มีสิทธิ์ = <code>aria-disabled</code> สีเทา ไม่มีไอคอนกุญแจ</p>
+    <div class="demo demo--phone">
+      <nav class="bottom-nav">
+        <a href="#" aria-current="page">🧾<span>รับออเดอร์</span></a>
+        <a href="#" aria-disabled="true">📖<span>จัดการเมนู</span></a>
+        <a href="#" aria-disabled="true">📊<span>ยอดขาย</span></a>
+        <a href="#" aria-disabled="true">💵<span>บัญชี</span></a>
+        <a href="#" aria-disabled="true">⚙️<span>ตั้งค่า</span></a>
+      </nav>
+    </div>
+    <div class="demo demo--phone">
+      <div class="toast" style="bottom:92px"><span>เพิ่ม ชาไทย แก้ว แล้ว (รวม 2)</span><button>ยกเลิก</button></div>
+      <div class="order-bar"><span class="order-bar__count">3</span><span class="order-bar__total"><small>ยังไม่ส่งครัว</small><b>170 บาท</b></span><button class="order-bar__cta">สรุปออเดอร์ →</button></div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Input · Hint<code>&lt;.input&gt; &lt;.hint&gt;</code></h2>
+    <div class="demo demo--col">
+      <div class="field"><label>ชื่อลูกค้า (เรียกตอนของเสร็จ)</label><input class="input" value="พี่แดง"><small>ไม่บังคับ</small></div>
+      <div class="hint">ถามลูกค้าให้ครบก่อนแล้วค่อยกดส่ง จะได้ออกใบครัวใบเดียว</div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Login: name tile · PIN · keypad<code>&lt;.name_tile&gt; &lt;.pin_dots&gt; &lt;.keypad&gt;</code></h2>
+    <div class="demo demo--col">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <button class="name-tile" aria-pressed="true"><span class="name-tile__avatar" style="color:#054C4C">น</span><b>นิด</b><small>พนักงาน</small></button>
+        <button class="name-tile"><span class="name-tile__avatar">เ</span><b>เมย์</b><small style="color:#8A4B12">ผู้จัดการ</small></button>
+        <button class="name-tile"><span class="name-tile__avatar">เ</span><b>เจ้าของร้าน</b><small>เจ้าของ</small></button>
+      </div>
+      <div class="pin-dots"><span class="is-filled"></span><span class="is-filled"></span><span></span><span></span></div>
+      <div class="keypad"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button><button>6</button><button>7</button><button>8</button><button>9</button><button class="keypad__text">สุ่มให้</button><button>0</button><button>⌫</button></div>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>
