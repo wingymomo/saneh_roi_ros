@@ -31,7 +31,21 @@ defmodule SanehRoiRosWeb.Layouts do
     default: nil,
     doc: "the current [scope](https://phoenix.hexdocs.pm/scopes.html)"
 
+  attr :bare, :boolean,
+    default: false,
+    doc: "render the content edge to edge (app screens built with `UI.screen`)"
+
   slot :inner_block, required: true
+
+  def app(%{bare: true} = assigns) do
+    ~H"""
+    <main>
+      {render_slot(@inner_block)}
+    </main>
+
+    <.flash_group flash={@flash} />
+    """
+  end
 
   def app(assigns) do
     ~H"""

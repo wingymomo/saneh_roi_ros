@@ -331,12 +331,43 @@ defmodule SanehRoiRosUI.Controls do
   @doc ~S"""
   On/off switch — `role="switch"` with `aria-checked`.
 
+  The track is 52×30. Set `touch` to wrap it in a transparent 64×44 button so
+  the tap target meets the 44px minimum (e.g. list rows).
+
       <UI.switch id="takeaway" checked={@takeaway} phx-click="toggle_takeaway" aria-label="ใส่ถุงกลับบ้าน" />
   """
   attr :id, :string, default: nil
   attr :checked, :boolean, default: false
+  attr :touch, :boolean, default: false, doc: "64×44 tap target around the track"
   attr :class, :any, default: nil
   attr :rest, :global, include: ~w(disabled name value)
+
+  def switch(%{touch: true} = assigns) do
+    ~H"""
+    <button
+      id={@id}
+      type="button"
+      role="switch"
+      aria-checked={to_string(@checked)}
+      class={[
+        "group flex h-11 w-16 flex-none cursor-pointer items-center justify-center border-0 bg-transparent p-0",
+        "disabled:cursor-not-allowed disabled:opacity-50",
+        @class
+      ]}
+      {@rest}
+    >
+      <span class={[
+        "flex h-[30px] w-[52px] items-center rounded-full p-[3px] transition-colors duration-200",
+        if(@checked, do: "bg-primary", else: "bg-switch-off")
+      ]}>
+        <span class={[
+          "block size-6 rounded-full bg-white shadow-sm transition-transform duration-200",
+          @checked && "translate-x-[22px]"
+        ]} />
+      </span>
+    </button>
+    """
+  end
 
   def switch(assigns) do
     ~H"""

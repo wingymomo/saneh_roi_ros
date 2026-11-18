@@ -60,7 +60,12 @@ defmodule SanehRoiRosWeb.UIGalleryLive do
        "tally-label" => 0
      })
      |> QuickAdd.put_counts(%{"coke-can" => 2})
-     |> assign(:switches, %{"bag" => false, "kitchen" => true, "soldout" => false})
+     |> assign(:switches, %{
+       "bag" => false,
+       "kitchen" => true,
+       "soldout" => false,
+       "touch" => true
+     })
      |> assign(:selected_staff, "1")
      |> assign(:pin, "")
      |> assign(:toast_ms, 4000)
@@ -889,6 +894,17 @@ defmodule SanehRoiRosWeb.UIGalleryLive do
               phx-click="toggle"
               phx-value-switch="kitchen"
             />
+            <div class="flex items-center gap-1.5 rounded-lg border-[1.5px] border-line-soft bg-surface py-1 pr-1.5 pl-3.5">
+              <span class="flex-1 text-[16px] font-bold">touch · 64×44 tap target</span>
+              <UI.switch
+                id="switch-touch"
+                touch
+                checked={@switches["touch"]}
+                aria-label="touch switch"
+                phx-click="toggle"
+                phx-value-switch="touch"
+              />
+            </div>
           </.demo>
         </.spec>
 

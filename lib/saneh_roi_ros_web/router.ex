@@ -20,6 +20,22 @@ defmodule SanehRoiRosWeb.Router do
     get "/", PageController, :home
   end
 
+  # จัดการเมนู — managers and the owner only.
+  scope "/", SanehRoiRosWeb do
+    pipe_through :browser
+
+    live_session :menu,
+      on_mount: [
+        {SanehRoiRosWeb.StaffAccess, :menu},
+        SanehRoiRosWeb.Toast,
+        SanehRoiRosWeb.MainNav
+      ] do
+      live "/menu", MenuLive.Index, :index
+      live "/menu/new", MenuLive.Form, :new
+      live "/menu/:id/edit", MenuLive.Form, :edit
+    end
+  end
+
   # Interactive gallery of the SanehRoiRosUI components (dev and test only).
   if Application.compile_env(:saneh_roi_ros, :ui_gallery, false) do
     scope "/dev", SanehRoiRosWeb do

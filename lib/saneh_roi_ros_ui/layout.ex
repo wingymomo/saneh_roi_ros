@@ -11,10 +11,12 @@ defmodule SanehRoiRosUI.Layout do
   # ---------------------------------------------------------------- screen
 
   @doc ~S"""
-  Mobile screen shell (reference width 390px, portrait).
+  Screen shell. Designed for phones first (reference width 390px) and fills
+  the available width on larger screens; use `content_class` to cap the
+  content's width where long lines would be hard to read.
 
-  The body gets 16px side padding and 110px bottom padding so it is never
-  covered by the floating order bar.
+  The body gets 16px side padding (more from `md:`) and 110px bottom padding
+  so it is never covered by the floating order bar.
 
       <UI.screen id="order">
         <:top><UI.top_bar title="โต๊ะ 1" back={~p"/"} /></:top>
@@ -25,6 +27,7 @@ defmodule SanehRoiRosUI.Layout do
   attr :id, :string, default: nil
   attr :padded, :boolean, default: true, doc: "reserve 110px at the bottom for the order bar"
   attr :class, :any, default: nil
+  attr :content_class, :any, default: nil, doc: "classes for the body, e.g. a max width"
   attr :rest, :global
   slot :top
   slot :inner_block, required: true
@@ -35,15 +38,16 @@ defmodule SanehRoiRosUI.Layout do
     <div
       id={@id}
       class={[
-        "relative mx-auto flex min-h-dvh w-full max-w-[390px] flex-col bg-bg font-sans text-primary",
+        "relative flex min-h-dvh w-full flex-col bg-bg font-sans text-primary",
         @class
       ]}
       {@rest}
     >
       {render_slot(@top)}
       <div class={[
-        "flex flex-[1_0_auto] flex-col gap-2.5 px-4 pt-3",
-        if(@padded, do: "pb-[110px]", else: "pb-4")
+        "flex flex-[1_0_auto] flex-col gap-2.5 px-4 pt-3 md:px-6 lg:px-8",
+        if(@padded, do: "pb-[110px]", else: "pb-4"),
+        @content_class
       ]}>
         {render_slot(@inner_block)}
       </div>
@@ -269,6 +273,7 @@ defmodule SanehRoiRosUI.Layout do
   attr :total, :integer, default: nil
   attr :total_label, :string, default: "รวม"
   attr :class, :any, default: nil
+  attr :inner_class, :any, default: nil, doc: "classes for the content, e.g. a max width"
   attr :rest, :global
   slot :inner_block, required: true
 
@@ -277,16 +282,18 @@ defmodule SanehRoiRosUI.Layout do
     <div
       id={@id}
       class={[
-        "sticky bottom-0 z-10 flex flex-col gap-2.5 border-t border-line-soft bg-bg px-4 pt-3 pb-5",
+        "sticky bottom-0 z-10 border-t border-line-soft bg-bg",
         @class
       ]}
       {@rest}
     >
-      <div :if={@total} class="flex items-baseline justify-between">
-        <span class="text-[15px] text-muted">{@total_label}</span>
-        <b class="text-[28px]" data-role="total">{SanehRoiRosUI.baht(@total)}</b>
+      <div class={["flex flex-col gap-2.5 px-4 pt-3 pb-5 md:px-6 md:pb-3 lg:px-8", @inner_class]}>
+        <div :if={@total} class="flex items-baseline justify-between">
+          <span class="text-[15px] text-muted">{@total_label}</span>
+          <b class="text-[28px]" data-role="total">{SanehRoiRosUI.baht(@total)}</b>
+        </div>
+        {render_slot(@inner_block)}
       </div>
-      {render_slot(@inner_block)}
     </div>
     """
   end
@@ -327,12 +334,16 @@ defmodule SanehRoiRosUI.Layout do
       data-key={@key}
       data-duration={@duration}
       data-on-dismiss={@on_dismiss}
-      class={[
-        "inset-x-4 bottom-[92px] z-30 mx-auto flex min-h-12 max-w-[358px] items-center gap-2.5",
-        "rounded-md bg-wait-ink py-1 pr-1.5 pl-3.5 text-[14.5px] text-white",
-        @position,
-        @class
-      ]}
+      class={
+        [
+          "inset-x-4 bottom-[92px] z-30 mx-auto flex min-h-12 max-w-[358px] items-center gap-2.5",
+          "rounded-md bg-wait-ink py-1 pr-1.5 pl-3.5 text-[14.5px] text-white",
+          @position,
+          # Centred on the page content, beside the side navigation.
+          @position == :fixed && "md:left-28 lg:left-60",
+          @class
+        ]
+      }
       {@rest}
     >
       <span class="flex-1">{render_slot(@inner_block)}</span>

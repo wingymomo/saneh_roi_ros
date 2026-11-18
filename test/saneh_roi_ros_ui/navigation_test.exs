@@ -20,6 +20,22 @@ defmodule SanehRoiRosUI.NavigationTest do
       assert has?(doc, "#top #move")
     end
 
+    test "back is a navigate link, or a patch with back_patch" do
+      nav = render(&Navigation.top_bar/1, id: "top", title: "ตัวเลือก", back: "/menu/new")
+
+      patch =
+        render(&Navigation.top_bar/1,
+          id: "top",
+          title: "ตัวเลือก",
+          back: "/menu/new",
+          back_patch: true
+        )
+
+      assert attr(nav, "#top a", "data-phx-link") == "redirect"
+      assert attr(patch, "#top a", "data-phx-link") == "patch"
+      assert attr(patch, "#top a", "href") == "/menu/new"
+    end
+
     test "has no back button without back" do
       doc = render(&Navigation.top_bar/1, id: "top", title: "รับออเดอร์", size: :lg)
 

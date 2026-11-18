@@ -166,6 +166,17 @@ defmodule SanehRoiRosUI.ControlsTest do
       assert "bg-switch-off" in classes(off, "#sw")
     end
 
+    test "touch switch wraps the track in a 64×44 tap target" do
+      on = render(&Controls.switch/1, id: "sw", checked: true, touch: true)
+      off = render(&Controls.switch/1, id: "sw", checked: false, touch: true)
+
+      assert attr(on, "#sw", "role") == "switch"
+      assert attr(on, "#sw", "aria-checked") == "true"
+      assert ["h-11", "w-16"] -- classes(on, "#sw") == []
+      assert "bg-primary" in classes(on, "#sw > span")
+      assert "bg-switch-off" in classes(off, "#sw > span")
+    end
+
     test "switch_row labels the switch and forwards phx-click to it" do
       assigns = %{}
 
